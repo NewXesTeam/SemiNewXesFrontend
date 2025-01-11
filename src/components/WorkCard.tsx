@@ -1,63 +1,63 @@
 import React from 'react';
-import { Card, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { getWorkLink } from '../utils.ts';
 import { Work } from '../interfaces/work.ts';
+import { Card, Tooltip } from '@douyinfe/semi-ui';
 
 const WorkCard = ({ work }: { work: Work }) => {
     let link = getWorkLink(work);
     let author_url = `/space.html?user_id=${work.user_id}`;
 
     return (
-        <Card className="mb-3">
+        <Tooltip content={work.created_at} position="bottom">
             <a href={link} className="text-decoration-none" target="_blank">
-                <OverlayTrigger overlay={<Tooltip>{work.created_at}</Tooltip>}>
-                    <img
-                        src={work.thumbnail}
-                        className="card-img-top padding-5px"
-                        alt={work.name}
-                        width={224}
-                        height={168}
-                    />
-                </OverlayTrigger>
-
-                <Card.Body>
-                    <Card.Title>{work.name}</Card.Title>
-                    <Card.Text style={{ transform: 'rotate(0)' }}>
-                        <a href={author_url} target="_blank">
-                            <span style={{ fontSize: '14px' }}>{work.username}</span>
-                        </a>
-                        <span style={{ fontSize: '12px' }}>
-                            👀{work.views} 👍{work.likes} 👎{work.unlikes}
-                        </span>
-                    </Card.Text>
-                </Card.Body>
+                <Card
+                    className="mb-3"
+                    title={work.name}
+                    cover={
+                        <img
+                            src={work.thumbnail}
+                            className="card-img-top padding-5px"
+                            alt={work.name}
+                            width={224}
+                            height={168}
+                        />
+                    }
+                >
+                    <a href={author_url} target="_blank">
+                        <span style={{ fontSize: '14px' }}>{work.username}</span>
+                    </a>
+                    <span style={{ fontSize: '12px' }}>
+                        👀{work.views} 👍{work.likes} 👎{work.unlikes}
+                    </span>
+                </Card>
             </a>
-        </Card>
+        </Tooltip>
     );
 };
 
 const SmallWorkCard = ({ work }: { work: Work }) => {
     return (
-        <OverlayTrigger
-            overlay={
-                <Tooltip>
-                    👀{work.views} 👍{work.likes} 👎{work.unlikes}
+        <Tooltip
+            position="bottom"
+            content={
+                <>
+                    <span>
+                        👀{work.views} 👍{work.likes} 👎{work.unlikes}
+                    </span>
                     <br />
                     {work.created_at}
-                </Tooltip>
+                </>
             }
         >
-            <Card>
-                <Card.Header>
+            <Card
+                title={
                     <a href={getWorkLink(work)} className="stretched-link">
                         {work.name}
                     </a>
-                </Card.Header>
-                <Card.Body className="py-0">
-                    <img src={work.thumbnail} height={138} className="m-auto" />
-                </Card.Body>
-            </Card>
-        </OverlayTrigger>
+                }
+                cover={<img src={work.thumbnail} height={138} className="m-auto" />}
+            ></Card>
+        </Tooltip>
     );
 };
 
