@@ -1,6 +1,6 @@
-# NewXesFrontend
+# SemiNewXesFrontend
 
-> 学而思新的前端体验（第三方）
+> 学而思新的前端体验（第三方），但是使用 Semi Design。由 @algfwq 主管。
 
 > [!WARNING]
 > 此项目仅供交流学习，请勿他用！
@@ -27,7 +27,20 @@
 
 您可以直接使用我们提供的 登录功能 进行登录。
 
-## 开发进度
+## 修改设计进度
+
+- [ ] 主页 /index.html
+- [ ] 登录 /login.html
+- [ ] 发现 /discover.html
+- [ ] 搜索 /search.html
+- [ ] 我的作品 /user.html
+- [ ] 个人主页 /space.html
+- [ ] 消息中心 /messages.html
+- [ ] 关于 /about.html
+- [ ] 用户信息展示 /userInfo.html
+- [ ] ...
+
+## 上游仓库开发进度
 
 - [x] 主页 /index.html
 - [x] 登录 /login.html
