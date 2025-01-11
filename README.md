@@ -1,6 +1,6 @@
-# NewXesFrontend
+# SemiNewXesFrontend
 
-> 学而思新的前端体验（第三方）
+> 学而思新的前端体验（第三方），但是使用 Semi Design。由 @algfwq 主管。
 
 > [!WARNING]
 > 此项目仅供交流学习，请勿他用！
@@ -21,22 +21,41 @@
 1. 下载 nginx
 2. 复制 nginx 到根目录。_注意不要把 `conf/nginx.conf` 给覆盖了！！！_
 3. 运行 nginx。（请先构建后再运行）
-4. 访问 `http://localhost:8080`
+4. 访问 `http://127.0.0.1:8080`
 
 ## 关于使用
 
 您可以直接使用我们提供的 登录功能 进行登录。
 
-## 开发进度
+## 修改设计进度
+
+- [ ] 主页 /index.html
+- [ ] 登录 /login.html
+- [ ] 发现 /discover.html
+- [ ] 搜索 /search.html
+- [ ] 我的作品 /user.html
+- [ ] 个人主页 /space.html
+- [ ] 消息中心 /messages.html
+- [ ] 关于 /about.html
+- [ ] 用户信息展示 /userInfo.html
+- [ ] ...
+
+## 上游仓库开发进度
 
 - [x] 主页 /index.html
 - [x] 登录 /login.html
 - [ ] 发现 /discover.html
 - [ ] 搜索 /search.html
 - [ ] 我的作品 /user.html
-- [ ] 个人主页 /space.html
+- [x] 个人主页 /space.html
 - [ ] 消息中心 /messages.html
 - [x] 关于 /about.html
 - [ ] 最终用户协议（等待补充内容） /eula.html
 - [x] 用户信息展示 /userInfo.html
 - [ ] ...
+
+## 关于贡献
+
+此仓库使用 GPL-3.0 许可证。
+
+请在贡献前阅读 [贡献指南](CONTRIBUTING)。
