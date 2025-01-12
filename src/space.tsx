@@ -1,18 +1,30 @@
+// @ts-ignore
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+// @ts-ignore
 import { UserInfo, FollowUser } from './interfaces/user.ts';
+// @ts-ignore
 import { SpaceProfile, SpaceIndex, SpaceCover, SpaceWorks, SpaceSocial } from './interfaces/space.ts';
 import { Tabs, Tab, Container, Stack, Card, Button, Nav } from 'react-bootstrap';
+// @ts-ignore
 import AutoCloseAlert from './components/AutoCloseAlert.tsx';
+// @ts-ignore
 import NavbarComponent from './components/Navbar.tsx';
+// @ts-ignore
 import WorkList from './components/WorkList.tsx';
+// @ts-ignore
 import Avatar from './components/Avatar.tsx';
+// @ts-ignore
 import { SmallWorkCard } from './components/WorkCard.tsx';
+// @ts-ignore
 import { UserVerticalList, UserHorizontalList } from './components/UserList.tsx';
+// @ts-ignore
 import { Pagination } from './components/Pagination.tsx';
+// @ts-ignore
 import { checkLoggedIn } from './utils.ts';
 import { v4 as generateUUID } from 'uuid';
 import './styles/common.scss';
+import './darkmode.scss';
 
 const SpaceTabs = {
     HomeTab: ({ userId }: { userId: string }) => {

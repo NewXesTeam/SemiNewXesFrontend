@@ -1,7 +1,7 @@
 import React from 'react';
 import { getWorkLink } from '../utils.ts';
 import { Work } from '../interfaces/work.ts';
-import { Card, Tooltip } from '@douyinfe/semi-ui';
+import { Card, Tooltip, Typography } from '@douyinfe/semi-ui';
 
 const WorkCard = ({ work }: { work: Work }) => {
     let link = getWorkLink(work);
@@ -35,6 +35,17 @@ const WorkCard = ({ work }: { work: Work }) => {
     );
 };
 
+const RemovedWorkCard = () => {
+    const { Title } = Typography;
+    return (
+        <Card>
+            <Title heading={6} style={{ margin: 8 }}>
+                    用户
+            </Title>
+        </Card>
+    );
+};
+
 const SmallWorkCard = ({ work }: { work: Work }) => {
     return (
         <Tooltip
@@ -62,4 +73,4 @@ const SmallWorkCard = ({ work }: { work: Work }) => {
 };
 
 export default WorkCard;
-export { SmallWorkCard };
+export { RemovedWorkCard, SmallWorkCard };
