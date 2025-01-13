@@ -29,7 +29,7 @@
 
 ## 修改设计进度
 
-- [ ] 主页 /index.html
+- [x] 主页 /index.html
 - [ ] 登录 /login.html
 - [ ] 发现 /discover.html
 - [ ] 搜索 /search.html

@@ -1,7 +1,12 @@
+// @ts-ignore
 import React from 'react';
+// @ts-ignore
 import { getWorkLink } from '../utils.ts';
+// @ts-ignore
 import { Work } from '../interfaces/work.ts';
 import { Card, Tooltip, Typography } from '@douyinfe/semi-ui';
+import { Tag, Space } from '@douyinfe/semi-ui';
+import { IconEyeOpened, IconLikeThumb, IconDislikeThumb, IconComment } from '@douyinfe/semi-icons';
 
 const WorkCard = ({ work }: { work: Work }) => {
     let link = getWorkLink(work);
@@ -18,17 +23,38 @@ const WorkCard = ({ work }: { work: Work }) => {
                             src={work.thumbnail}
                             className="card-img-top padding-5px"
                             alt={work.name}
-                            width={224}
+                            width={324}
                             height={168}
                         />
                     }
                 >
-                    <a href={author_url} target="_blank">
-                        <span style={{ fontSize: '14px' }}>{work.username}</span>
-                    </a>
-                    <span style={{ fontSize: '12px' }}>
-                        👀{work.views} 👍{work.likes} 👎{work.unlikes}
-                    </span>
+                    <Space spacing="tight" wrap>
+                        <div className="d-flex justify-content-between align-items-center">
+                            {/*<span style={{ fontSize: '12px' }}>*/}
+                            <a href={author_url} target="_blank" style={{ maxWidth: '114px' }}>
+                                <Tag size="large" color="yellow" style={{ fontSize: '14px' }}>
+                                    {work.username}
+                                </Tag>
+                                {/*<span style={{ fontSize: '14px' }}>{work.username}</span>*/}
+                            </a>
+                            <span style={{ fontSize: '12px' }}>
+                                <Tag color="cyan" size="small" shape="circle" prefixIcon={<IconEyeOpened />}>
+                                    {work.views}
+                                </Tag>
+                                <Tag color="red" size="small" shape="circle" prefixIcon={<IconLikeThumb />}>
+                                    {work.likes}
+                                </Tag>
+                                <Tag color="purple" size="small" shape="circle" prefixIcon={<IconDislikeThumb />}>
+                                    {work.unlikes}
+                                </Tag>
+                                <Tag color="green" size="small" shape="circle" prefixIcon={<IconComment />}>
+                                    {work.comments}
+                                </Tag>
+                                {/*👀{work.views} 👍{work.likes} 👎{work.unlikes} 💬{work.comments}*/}
+                            </span>
+                        </div>
+                    </Space>
+                    {/*</span>*/}
                 </Card>
             </a>
         </Tooltip>
@@ -40,7 +66,7 @@ const RemovedWorkCard = () => {
     return (
         <Card>
             <Title heading={6} style={{ margin: 8 }}>
-                    用户
+                用户
             </Title>
         </Card>
     );

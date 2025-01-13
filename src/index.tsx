@@ -1,11 +1,16 @@
+// @ts-ignore
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+// @ts-ignore
 import { Work } from './interfaces/work.ts';
-import { Carousel, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
+// @ts-ignore
 import NavbarComponent from './components/Navbar.tsx';
+// @ts-ignore
 import WorkList from './components/WorkList.tsx';
 import './styles/index.scss';
+import { Carousel, Space } from '@douyinfe/semi-ui';
 
 const IndexPage = () => {
     const [cards, setCards] = React.useState<React.JSX.Element | null>(null);
@@ -26,40 +31,68 @@ const IndexPage = () => {
         };
     }, []);
 
+    const style = {
+        width: '100%',
+        height: '400px',
+    };
+
+    const titleStyle = {
+        position: 'absolute',
+        top: '100px',
+        left: '100px',
+        color: '#1C1F23'
+    };
+
+
+    const imgList = [
+        'https://livefile.xesimg.com/programme/python_assets/2408b27e9c45a11098ddfd851844c4f1.png',
+        'https://static0.xesimg.com/talcode/assets/home/banner/search_default.png',
+        'https://static0.xesimg.com/talcode/assets/home/banner/event_default.png',
+    ];
+
     return (
         <>
             <NavbarComponent />
 
             <Container>
-                <Carousel className="m-auto mt-5 mb-5" interval={3500}>
-                    <Carousel.Item>
-                        <a href="https://code.xueersi.com/home/project/detail?lang=scratch&pid=24831951&version=3.0&langType=scratch">
-                            <img
-                                src="https://livefile.xesimg.com/programme/python_assets/2408b27e9c45a11098ddfd851844c4f1.png"
-                                className="d-block h-25"
-                                alt="ill"
-                            />
-                        </a>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <a href="https://code.xueersi.com/search">
-                            <img
-                                src="https://static0.xesimg.com/talcode/assets/home/banner/search_default.png"
-                                className="d-block h-25"
-                                alt="search"
-                            />
-                        </a>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <a href="https://code.xueersi.com/event">
-                            <img
-                                src="https://static0.xesimg.com/talcode/assets/home/banner/event_default.png"
-                                className="d-block h-25"
-                                alt="events"
-                            />
-                        </a>
-                    </Carousel.Item>
+                <Carousel style={style} theme="dark">
+                    {imgList.map((src, index) => {
+                        return (
+                            <div key={index} style={{ backgroundSize: 'cover', backgroundImage: `url('${src}')` }}>
+                                <Space vertical align="start" spacing="medium"></Space>
+                            </div>
+                        );
+                    })}
                 </Carousel>
+                {/*<Carousel className="m-auto mt-5 mb-5" interval={3500}>*/}
+                {/*    <Carousel.Item>*/}
+                {/*        <a href="https://code.xueersi.com/home/project/detail?lang=scratch&pid=24831951&version=3.0&langType=scratch">*/}
+                {/*            <img*/}
+                {/*                src="https://livefile.xesimg.com/programme/python_assets/2408b27e9c45a11098ddfd851844c4f1.png"*/}
+                {/*                className="d-block h-25"*/}
+                {/*                alt="ill"*/}
+                {/*            />*/}
+                {/*        </a>*/}
+                {/*    </Carousel.Item>*/}
+                {/*    <Carousel.Item>*/}
+                {/*        <a href="https://code.xueersi.com/search">*/}
+                {/*            <img*/}
+                {/*                src="https://static0.xesimg.com/talcode/assets/home/banner/search_default.png"*/}
+                {/*                className="d-block h-25"*/}
+                {/*                alt="search"*/}
+                {/*            />*/}
+                {/*        </a>*/}
+                {/*    </Carousel.Item>*/}
+                {/*    <Carousel.Item>*/}
+                {/*        <a href="https://code.xueersi.com/event">*/}
+                {/*            <img*/}
+                {/*                src="https://static0.xesimg.com/talcode/assets/home/banner/event_default.png"*/}
+                {/*                className="d-block h-25"*/}
+                {/*                alt="events"*/}
+                {/*            />*/}
+                {/*        </a>*/}
+                {/*    </Carousel.Item>*/}
+                {/*</Carousel>*/}
                 {cards}
             </Container>
         </>
