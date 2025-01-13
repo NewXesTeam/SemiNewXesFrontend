@@ -50,28 +50,13 @@ const SmallUserCard = ({ user }: { user: SimpleUserInfo }) => {
     const userLink = `/space.html?id=${user.id}`;
 
     return (
-        <OverlayTrigger
-            overlay={
-                <Tooltip>
-                    <span style={{ marginRight: '10px' }}>关注：{user.follows}</span>
-                    <span>粉丝：{user.fans}</span>
-                </Tooltip>
-            }
-        >
-            <Card style={{ padding: '10px' }}>
-                <img
-                    src={user.avatar_path}
-                    alt={user.realname}
-                    height={80}
-                    width={80}
-                    style={{ borderRadius: '50%' }}
-                />
-                <a className="stretched-link" href={userLink} target="_blank">
-                    {user.realname}
-                </a>
-            </Card>
-        </OverlayTrigger>
+        <Card style={{ padding: '10px' }}>
+            <img src={user.avatar_path} alt={user.realname} height={80} width={80} style={{ borderRadius: '50%' }} />
+            <a className="stretched-link" href={userLink} target="_blank">
+                {user.realname}
+            </a>
+        </Card>
     );
 };
 
-export { HorizontalUserCard, SmallUserCard };
+export { SmallUserCard };
