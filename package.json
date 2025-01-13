@@ -13,13 +13,14 @@
         "prettier": "npx prettier --write ."
     },
     "dependencies": {
+        "@douyinfe/semi-icons": "^2.73.0",
         "@douyinfe/semi-ui": "^2.72.3",
         "@types/react": "^19.0.1",
         "@types/react-dom": "^19.0.2",
         "bootstrap": "^5.3.3",
-        "react": "^19.0.0",
+        "react": "^18.3.1",
         "react-bootstrap": "^2.10.6",
-        "react-dom": "^19.0.0",
+        "react-dom": "^18.3.0",
         "uuid": "^11.0.5"
     },
     "devDependencies": {
