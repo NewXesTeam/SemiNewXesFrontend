@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { Container, Nav, Navbar, NavDropdown, Form } from 'react-bootstrap';
 import { Switch, Typography } from '@douyinfe/semi-ui';
-import { Nav, Avatar, Dropdown, Input, Form } from '@douyinfe/semi-ui';
+import { Nav, Avatar, Dropdown, Form } from '@douyinfe/semi-ui';
 import { IconSearch } from '@douyinfe/semi-icons';
-import Avatar from './Avatar';
 import { checkLoggedIn } from '@/utils';
 import { UserInfo } from '@/interfaces/user';
 
@@ -82,9 +80,7 @@ const NavbarComponent = () => {
                     </Dropdown.Menu>
                 }
             >
-                <Avatar size={'small'} border={true} src={userAvatar} style={{ margin: 8 }}>
-                    BD
-                </Avatar>
+                <Avatar size='small' border={true} src={userAvatar} style={{ margin: 8 }} />
             </Dropdown>
             // <NavDropdown title="用户" align={'end'}>
             //     <NavDropdown.Item href="/space.html" target="_blank">
@@ -99,17 +95,18 @@ const NavbarComponent = () => {
         );
     } else {
         userComponent = (
-            <Text heading={6} style={{ margin: 8 }} link={{ href: '/login.html' }}>
+            <Text style={{ margin: 8 }} link={{ href: '/login.html' }}>
                 登录
             </Text>
         );
     }
 
     function selectKey(key) {
-        if (key.itemKey === 'Main') {
+        if (key.itemKey === 'index') {
             window.location.assign('/');
-        } else if (key.itemKey === 'Discover') {
-        } else if (key.itemKey === 'About') {
+        } else if (key.itemKey === 'discover') {
+            window.location.assign('/discover.html');
+        } else if (key.itemKey === 'about') {
             window.location.assign('/about.html');
         }
     }
@@ -123,9 +120,9 @@ const NavbarComponent = () => {
             <Nav
                 mode={'horizontal'}
                 items={[
-                    { itemKey: 'Main', text: '主页' },
-                    { itemKey: 'Discover', text: '发现' },
-                    { itemKey: 'About', text: '关于' },
+                    { itemKey: 'index', text: '主页' },
+                    { itemKey: 'discover', text: '发现' },
+                    { itemKey: 'about', text: '关于' },
                 ]}
                 onSelect={key => selectKey(key)}
                 header={{
@@ -134,9 +131,10 @@ const NavbarComponent = () => {
                 footer={
                     <>
                         <Form
-                            render={({ formState, formApi, values }) => (
+                            render={() => (
                                 <>
                                     <Form.Input
+                                        field="keyword"
                                         prefix={<IconSearch />}
                                         onEnterPress={handleSearch}
                                         style={{ width: 180 }}
