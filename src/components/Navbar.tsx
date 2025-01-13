@@ -114,8 +114,9 @@ const NavbarComponent = () => {
         }
     }
 
-    // const [searchText, setSearchText] = useState('');
-    const [searchText, setSearchText] = React.useState('');
+    function handleSearch(event) {
+        window.location.assign('https://code.xueersi.com/search-center?keyword=' + encodeURI(event.target.value));
+    }
 
     return (
         <div style={{ width: '100%' }}>
@@ -132,26 +133,18 @@ const NavbarComponent = () => {
                 }}
                 footer={
                     <>
-                        {/*搜索服务表单*/}
                         <Form
-                            render={() => (
+                            render={({ formState, formApi, values }) => (
                                 <>
                                     <Form.Input
-                                        field="keyword"
                                         prefix={<IconSearch />}
+                                        onEnterPress={handleSearch}
                                         style={{ width: 180 }}
-                                        onChange={value => setSearchText(value)}
                                     />
                                 </>
                             )}
                             layout="horizontal"
-                            onSubmit={() => {
-                                window.location.assign(
-                                    'https://code.xueersi.com/search-center?keyword=' + encodeURI(searchText),
-                                );
-                            }}
                         ></Form>
-                        {/*<Input model={searchText} prefix={<IconSearch />} showClear></Input>*/}
 
                         {userComponent}
                         <p />
