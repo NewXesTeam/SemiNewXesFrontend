@@ -1,12 +1,8 @@
-// @ts-ignore
-import React from 'react';
-// @ts-ignore
-import { getWorkLink } from '../utils.ts';
-// @ts-ignore
-import { Work } from '../interfaces/work.ts';
-import { Card, Tooltip, Typography } from '@douyinfe/semi-ui';
-import { Tag, Space } from '@douyinfe/semi-ui';
+import * as React from 'react';
+import { Card, Tooltip, Typography, Tag, Space } from '@douyinfe/semi-ui';
 import { IconEyeOpened, IconLikeThumb, IconDislikeThumb, IconComment } from '@douyinfe/semi-icons';
+import { getWorkLink } from '@/utils';
+import { Work } from '@/interfaces/work';
 
 const WorkCard = ({ work }: { work: Work }) => {
     let link = getWorkLink(work);
@@ -20,17 +16,19 @@ const WorkCard = ({ work }: { work: Work }) => {
                     title={work.name}
                     cover={
                         <img
-                            src={work.thumbnail}
+                            src={
+                              work.thumbnail ||
+                              'https://static0-test.xesimg.com/programme/assets/c16477eaab146fbc22a050e2203f91b8.png'
+                            }
                             className="card-img-top padding-5px"
                             alt={work.name}
-                            width={324}
+                            width={224}
                             height={168}
                         />
                     }
                 >
                     <Space spacing="tight" wrap>
                         <div className="d-flex justify-content-between align-items-center">
-                            {/*<span style={{ fontSize: '12px' }}>*/}
                             <a href={author_url} target="_blank" style={{ maxWidth: '114px' }}>
                                 <Tag size="large" color="yellow" style={{ fontSize: '14px' }}>
                                     {work.username}
@@ -54,7 +52,6 @@ const WorkCard = ({ work }: { work: Work }) => {
                             </span>
                         </div>
                     </Space>
-                    {/*</span>*/}
                 </Card>
             </a>
         </Tooltip>
@@ -79,7 +76,7 @@ const SmallWorkCard = ({ work }: { work: Work }) => {
             content={
                 <>
                     <span>
-                        👀{work.views} 👍{work.likes} 👎{work.unlikes}
+                        👀{work.views} 👍{work.likes} 👎{work.unlikes} 💬{work.comments}
                     </span>
                     <br />
                     {work.created_at}
@@ -92,7 +89,7 @@ const SmallWorkCard = ({ work }: { work: Work }) => {
                         {work.name}
                     </a>
                 }
-                cover={<img src={work.thumbnail} height={138} className="m-auto" />}
+                cover={<img src={work.thumbnail} height={138} className="m-auto" alt={work.name} />}
             ></Card>
         </Tooltip>
     );

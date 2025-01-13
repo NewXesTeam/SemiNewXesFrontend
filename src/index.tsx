@@ -1,16 +1,11 @@
-// @ts-ignore
-import React from 'react';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-// @ts-ignore
-import { Work } from './interfaces/work.ts';
+import { Work } from '@/interfaces/work';
 import { Container } from 'react-bootstrap';
-
-// @ts-ignore
-import NavbarComponent from './components/Navbar.tsx';
-// @ts-ignore
-import WorkList from './components/WorkList.tsx';
-import './styles/index.scss';
 import { Carousel, Space } from '@douyinfe/semi-ui';
+import NavbarComponent from '@/components/Navbar';
+import WorkList from '@/components/WorkList';
+import '@/styles/index.scss';
 
 const IndexPage = () => {
     const [cards, setCards] = React.useState<React.JSX.Element | null>(null);

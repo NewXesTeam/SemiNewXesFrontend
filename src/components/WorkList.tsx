@@ -1,8 +1,8 @@
-import React from 'react';
-import { Work } from '../interfaces/work.ts';
+import * as React from 'react';
+import { Work } from '@/interfaces/work';
 import { Row, Col } from 'react-bootstrap';
-import WorkCard from './WorkCard.tsx';
-import { RemovedWorkCard } from './WorkCard.tsx';
+import WorkCard from './WorkCard';
+import { RemovedWorkCard } from './WorkCard';
 
 const WorkList = ({ works, className = '' }: { works: Work[]; className?: string }) => {
     const cards = works.map((work: Work) => {
@@ -16,7 +16,7 @@ const WorkList = ({ works, className = '' }: { works: Work[]; className?: string
             );
         } else {
             return (
-                <Col key={work.id}>
+                <Col key={work.topic_id}>
                     <WorkCard work={work} />
                 </Col>
             );

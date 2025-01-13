@@ -1,10 +1,8 @@
-// @ts-ignore
-import React from 'react';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Container } from 'react-bootstrap';
-// @ts-ignore
-import NavbarComponent from './components/Navbar.tsx';
-import './styles/common.scss';
+import NavbarComponent from '@/components/Navbar';
+import '@/styles/common.scss';
 import './darkmode.scss';
 
 const AboutPage = () => {

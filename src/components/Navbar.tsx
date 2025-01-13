@@ -1,12 +1,12 @@
-// @ts-ignore
-import React, { useEffect, useState } from 'react';
-// import { Container, Nav, Navbar, NavDropdown, Form } from 'react-bootstrap';
-// @ts-ignore
-import { checkLoggedIn } from '../utils.ts';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { Container, Nav, Navbar, NavDropdown, Form } from 'react-bootstrap';
 import { Switch, Typography } from '@douyinfe/semi-ui';
 import { Nav, Avatar, Dropdown, Input, Form } from '@douyinfe/semi-ui';
 import { IconSearch } from '@douyinfe/semi-icons';
-import { UserInfo } from '../interfaces/user';
+import Avatar from './Avatar';
+import { checkLoggedIn } from '@/utils';
+import { UserInfo } from '@/interfaces/user';
 
 const NavbarComponent = () => {
     const { Text } = Typography;

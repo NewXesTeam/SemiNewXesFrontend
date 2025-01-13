@@ -1,29 +1,19 @@
-// @ts-ignore
-import React from 'react';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-// @ts-ignore
-import { UserInfo, FollowUser } from './interfaces/user.ts';
-// @ts-ignore
-import { SpaceProfile, SpaceIndex, SpaceCover, SpaceWorks, SpaceSocial } from './interfaces/space.ts';
-import { Tabs, Tab, Container, Stack, Card, Button, Nav } from 'react-bootstrap';
-// @ts-ignore
-import AutoCloseAlert from './components/AutoCloseAlert.tsx';
-// @ts-ignore
-import NavbarComponent from './components/Navbar.tsx';
-// @ts-ignore
-import WorkList from './components/WorkList.tsx';
-// @ts-ignore
-import Avatar from './components/Avatar.tsx';
-// @ts-ignore
-import { SmallWorkCard } from './components/WorkCard.tsx';
-// @ts-ignore
-import { UserVerticalList, UserHorizontalList } from './components/UserList.tsx';
-// @ts-ignore
-import { Pagination } from './components/Pagination.tsx';
-// @ts-ignore
-import { checkLoggedIn } from './utils.ts';
+import { UserInfo } from '@/interfaces/user';
+import { SpaceProfile, SpaceIndex, SpaceCover, SpaceWorks, SpaceSocial } from '@/interfaces/space';
+import { ErrorResponse } from '@/interfaces/common';
+import { Tabs, Tab, Container, Stack, Card, Button, Nav, Form } from 'react-bootstrap';
+import AutoCloseAlert from '@/components/AutoCloseAlert';
+import NavbarComponent from '@/components/Navbar';
+import WorkList from '@/components/WorkList';
+import Avatar from '@/components/Avatar';
+import { SmallWorkCard } from '@/components/WorkCard';
+import { UserVerticalList, UserHorizontalList } from '@/components/UserList';
+import { Pagination } from '@/components/Pagination';
+import { checkLoggedIn } from '@/utils';
 import { v4 as generateUUID } from 'uuid';
-import './styles/common.scss';
+import '@/styles/common.scss';
 import './darkmode.scss';
 
 const SpaceTabs = {
@@ -345,15 +335,18 @@ const SpacePage = () => {
     const [userFans, setUserFans] = React.useState(0);
     const [userFollowed, setUserFollowed] = React.useState(false);
     const [isMySpace, setIsMySpace] = React.useState(true);
+    const [signatureInputValue, setSignatureInputValue] = React.useState('');
+    const [isChangingSignature, setIsChangingSignature] = React.useState(false);
     const [alerts, setAlerts] = React.useState<React.JSX.Element[]>([]);
 
+    const signatureInputRef = React.useRef<HTMLInputElement | null>(null);
+
     const onClickFollow = async () => {
-        const response = await fetch('/api/space/follow', {
+        await fetch('/api/space/follow', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ followed_user_id: '30883073', state: !userFollowed }),
+            body: JSON.stringify({ followed_user_id: userId, state: !userFollowed }),
         });
-        const responseData: FollowUser = await response.json();
         setUserFollowed(!userFollowed);
         setAlerts([
             <AutoCloseAlert key={generateUUID().slice(0, 8)} variant="success">
@@ -361,6 +354,34 @@ const SpacePage = () => {
             </AutoCloseAlert>,
             ...alerts,
         ]);
+    };
+
+    const handleChangeSignature = async () => {
+        setIsChangingSignature(false);
+        setSignatureInputValue('');
+
+        const response = await fetch('/api/space/edit_signature', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ signature: signatureInputValue }),
+        });
+        if (response.ok) {
+            setUserSignature(signatureInputValue);
+            setAlerts([
+                <AutoCloseAlert variant="success" key={generateUUID().slice(0, 8)}>
+                    更改签名成功
+                </AutoCloseAlert>,
+                ...alerts,
+            ]);
+        } else {
+            const responseData: ErrorResponse = await response.json();
+            setAlerts([
+                <AutoCloseAlert variant="danger" key={generateUUID().slice(0, 8)}>
+                    {responseData.message}
+                </AutoCloseAlert>,
+                ...alerts,
+            ]);
+        }
     };
 
     React.useEffect(() => {
@@ -394,7 +415,47 @@ const SpacePage = () => {
             <Stack className="mt-5 mx-auto width-fit-content text-center">
                 <Avatar name={username} avatarUrl={userAvatar} size={128} />
                 <span style={{ fontSize: '24px' }}>{username}</span>
-                <span style={{ fontSize: '16px' }}>{userSignature}</span>
+                {isChangingSignature ? (
+                    <Form.Control
+                        type="text"
+                        value={signatureInputValue}
+                        onChange={event => setSignatureInputValue(event.target.value)}
+                        onKeyDown={event => {
+                            if (event.key === 'Enter') {
+                                handleChangeSignature();
+                            } else if (event.key === 'Escape') {
+                                setIsChangingSignature(false);
+                                setSignatureInputValue('');
+                            }
+                        }}
+                        onBlur={() => {
+                            handleChangeSignature();
+                        }}
+                        ref={signatureInputRef}
+                    />
+                ) : (
+                    <div>
+                        <span style={{ fontSize: '16px' }}>{userSignature}</span>
+                        {isMySpace && (
+                            <>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <Button
+                                    size="sm"
+                                    variant="outline-secondary"
+                                    onClick={() => {
+                                        setSignatureInputValue(userSignature);
+                                        setIsChangingSignature(true);
+                                        console.log(signatureInputRef.current);
+                                        signatureInputRef.current?.focus();
+                                        signatureInputRef.current?.select();
+                                    }}
+                                >
+                                    修改签名
+                                </Button>
+                            </>
+                        )}
+                    </div>
+                )}
                 <span>
                     关注：{userFollows}&nbsp;&nbsp;&nbsp;&nbsp;粉丝：{userFans}
                 </span>
