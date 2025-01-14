@@ -6,7 +6,7 @@ import { Work } from '@/interfaces/work';
 
 const WorkCard = ({ work }: { work: Work }) => {
     let link = getWorkLink(work);
-    let author_url = `/space.html?user_id=${work.user_id}`;
+    let author_url = `/space.html?id=${work.user_id}`;
 
     return (
         <Tooltip content={work.created_at} position="bottom">
