@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Switch, Typography } from '@douyinfe/semi-ui';
-import { Nav, Avatar, Dropdown, Form } from '@douyinfe/semi-ui';
+import { Nav, Avatar, Dropdown, Form ,Input} from '@douyinfe/semi-ui';
 import { IconSearch } from '@douyinfe/semi-icons';
 import { checkLoggedIn } from '@/utils';
 import { UserInfo } from '@/interfaces/user';
@@ -133,8 +133,7 @@ const NavbarComponent = () => {
                         <Form
                             render={() => (
                                 <>
-                                    <Form.Input
-                                        field="keyword"
+                                    <Input
                                         prefix={<IconSearch />}
                                         onEnterPress={handleSearch}
                                         style={{ width: 180 }}
