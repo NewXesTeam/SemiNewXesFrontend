@@ -14,7 +14,6 @@ import { Pagination } from '@/components/Pagination';
 import { checkLoggedIn } from '@/utils';
 import { v4 as generateUUID } from 'uuid';
 import '@/styles/common.scss';
-import './darkmode.scss';
 
 const SpaceTabs = {
     HomeTab: ({ userId }: { userId: string }) => {

@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { Container } from 'react-bootstrap';
 import NavbarComponent from '@/components/Navbar';
 import '@/styles/common.scss';
-import './darkmode.scss';
 
 const AboutPage = () => {
     return (
